@@ -29,10 +29,26 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.laravel-toast-system,
 .laravel-toast-info {
     &:before {
-        //content: $laravel-toast-info;
-        content: "\e903";
+        content: $laravel-toast-info;
+    }
+}
+.laravel-toast-success {
+    &:before {
+        content: $laravel-toast-success;
+    }
+}
+.laravel-toast-warning {
+    &:before {
+        content: $laravel-toast-warning;
+    }
+}
+.laravel-toast-bug,
+.laravel-toast-error {
+    &:before {
+        content: $laravel-toast-error;
     }
 }
 
@@ -155,10 +171,35 @@
             }
         }
 
+        &-system{
+            background-color: rgb(245, 245, 245);
+            color           : #000000;
+        }
+
+        &-system,
         &-info {
-            background-color: #17a2b8;
+            background-color: rgb(23, 162, 184);
             .toast-body {
                 @extend .laravel-toast-info;
+            }
+        }
+        &-success {
+            background-color: rgba(41, 166, 70, 0.9);
+            .toast-body {
+                @extend .laravel-toast-success;
+            }
+        }
+        &-warning {
+            background-color: rgba(255,193,7,.9);
+            .toast-body {
+                @extend .laravel-toast-warning;
+            }
+        }
+        &-bug,
+        &-error {
+            background-color: rgba(220,53,69,.9);
+            .toast-body {
+                @extend .laravel-toast-error;
             }
         }
     }

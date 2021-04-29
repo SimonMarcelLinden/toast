@@ -108,8 +108,23 @@ class toast {
         }
     }
 
+    static system(title, body) {
+        this.#createToast('info', title, body);
+    }
     static info(title, body) {
-        this.#createToast('info', 'Test Title', 'Test Body');
+        this.#createToast('info', title, body);
+    }
+    static success(title, body) {
+        this.#createToast('success', title, body);
+    }
+    static warning(title, body) {
+        this.#createToast('warning', title, body);
+    }
+    static error(title, body) {
+        this.#createToast('error', title, body);
+    }
+    static bug(title, body) {
+        this.#createToast('error', title, body);
     }
 }
 

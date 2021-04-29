@@ -1,0 +1,8 @@
+$toast-font-family: "laravel-toast" !default;
+$toast-font-path  : "fonts" !default;
+
+$laravel-toast-error  : "\e901";
+$laravel-toast-success: "\e902";
+$laravel-toast-info   : "\e903";
+$laravel-toast-warning: "\e900";
+

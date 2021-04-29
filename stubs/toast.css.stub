@@ -1,0 +1,118 @@
+/** Laravel Toast Font **/
+@font-face {
+    font-family: 'laravel-toast';
+    src:  url('fonts/laravel-toast.eot?cplspc');
+    src:  url('fonts/laravel-toast.eot?cplspc#iefix') format('embedded-opentype'),
+    url('fonts/laravel-toast.ttf?cplspc') format('truetype'),
+    url('fonts/laravel-toast.woff?cplspc') format('woff'),
+    url('fonts/laravel-toast.svg?cplspc#laravel-toast') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+    font-display: block;
+}
+
+[class^="laravel-"], [class*=" laravel-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'laravel-toast', serif !important;
+    speak           : never;
+    font-style      : normal;
+    font-weight     : normal;
+    font-variant    : normal;
+    text-transform  : none;
+    line-height     : 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing : antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.laravel-toast-error:before {
+    content: "\e901";
+}
+.laravel-toast-success:before {
+    content: "\e902";
+}
+.laravel-toast-info:before {
+    content: "\e903";
+}
+.laravel-toast-warning:before {
+    content: "\e900";
+}
+
+
+
+.toast-container {
+    position        : fixed;
+    top             : 12px;
+    right           : 12px;
+    pointer-events  : none;
+    z-index         : 999999;
+}
+
+.toast {
+    position            : relative;
+    pointer-events      : auto;
+    overflow            : hidden;
+    margin              : 0 0 6px;
+    /*padding             : 15px;*/
+    width               : 300px;
+    border-radius       : 3px;
+    background-color    : #ffffff;
+
+    box-shadow          : 0 0 12px #999;
+    color               : #000000;
+    opacity             : .8;
+    transition          : all 0.3s ease-in-out;
+}
+.toast:hover {
+    box-shadow  : 0 0 12px #000;
+    opacity     : 1;
+    cursor      : pointer;
+}
+
+.toast-header {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    padding         : .25rem .75rem;
+    border-bottom   : 1px solid rgba(0,0,0,.05);
+    border-top-left-radius : calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    font-size       : 14px;
+}
+.toast-header button {
+    padding         : 0;
+    font-size       : 1.5rem;
+    font-weight     : 700;
+    line-height     : 1;
+    text-decoration : none;
+    color           : #000;
+    background-color: transparent;
+    border          : 0;
+    text-shadow     : 0 1px 0 #000;
+    cursor          : pointer;
+    opacity         : .75;
+}
+.toast-header button:hover {
+    opacity: 1;
+}
+
+.toast-body {
+    padding             : 15px;
+    background-position : 15px center;
+    background-repeat   : no-repeat;
+}
+.toast-body .t-text{
+    /*color   : #262626;*/
+    /*margin  : 5px 0 0 15px;*/
+}
+
+.toast-info {
+    background-color: #17a2b8;
+}
+.toast-info .toast-body {
+    padding             : 15px 15px 15px 50px;
+    background-position : 15px center;
+    background-repeat   : no-repeat;
+    background-image    : url('../img/toast-info.png');
+}

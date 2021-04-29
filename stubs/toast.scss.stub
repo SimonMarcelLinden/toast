@@ -1,0 +1,165 @@
+/** Laravel Toast Font **/
+
+@import "toast-variables";
+
+@font-face {
+    font-family: '#{$toast-font-family}';
+    src:  url('#{$toast-font-path}/#{$toast-font-family}.eot?cplspc');
+    src:  url('#{$toast-font-path}/#{$toast-font-family}.eot?cplspc#iefix') format('embedded-opentype'),
+    url('#{$toast-font-path}/#{$toast-font-family}.ttf?cplspc') format('truetype'),
+    url('#{$toast-font-path}/#{$toast-font-family}.woff?cplspc') format('woff'),
+    url('#{$toast-font-path}/#{$toast-font-family}.svg?cplspc##{$toast-font-family}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="laravel-"], [class*=" laravel-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: $toast-font-family, serif !important;
+    speak           : never;
+    font-style      : normal;
+    font-weight     : normal;
+    font-variant    : normal;
+    text-transform  : none;
+    line-height     : 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing : antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.laravel-toast-info {
+    &:before {
+        //content: $laravel-toast-info;
+        content: "\e903";
+    }
+}
+
+.toast-container {
+    position        : fixed;
+    pointer-events  : none;
+    z-index         : 999999;
+
+    &.toast-top-left {
+        top : 12px;
+        left: 12px;
+    }
+    &.toast-top-center {
+        top      : 12px;
+        left     : 50%;
+        transform: translateX(-50%);
+    }
+    &.toast-top-right {
+        top  : 12px;
+        right: 12px;
+    }
+    &.toast-center-left {
+        left      : 12px;
+        top       : 50%;
+        transform: translateY(-50%); }
+    &.toast-center-center {
+        top      : 50%;
+        left     : 50%;
+        transform: translate(-50%, -50%);}
+    &.toast-center-right {
+        right    : 12px;
+        top      : 50%;
+        transform: translateY(-50%);
+    }
+    &.toast-bottom-left {
+        bottom: 12px;
+        left  : 12px;
+    }
+    &.toast-bottom-center {
+        bottom   : 12px;
+        left     : 50%;
+        transform: translateX(-50%); }
+    &.toast-bottom-right {
+        bottom: 12px;
+        right : 12px;
+    }
+
+    .toast {
+        position            : relative;
+        pointer-events      : auto;
+        overflow            : hidden;
+        margin              : 0 0 6px;
+        width               : 300px;
+        border-radius       : 3px;
+        background-color    : #ffffff;
+
+        box-shadow          : 0 0 12px #999;
+        color               : #000000;
+        opacity             : 0;
+
+        &.active {
+            opacity: .8;
+            &:hover {
+                box-shadow  : 0 0 12px #000;
+                opacity     : 1;
+                cursor      : pointer;
+                transition  : all 0.35s ease-in-out;
+            }
+        }
+
+
+        .toast-header {
+            display         : flex;
+            align-items     : center;
+            justify-content : space-between;
+            padding         : .25rem .75rem;
+            border          : {
+                bottom      : 1px solid rgba(0,0,0,.05);
+                top         : {
+                    left-radius : calc(.25rem - 1px);
+                    right-radius: calc(.25rem - 1px);
+                }
+            }
+            font-size       : 14px;
+            button {
+                padding     : 0;
+                background  : {
+                    color: transparent;
+                }
+                border      : {
+                    width   : 0;
+                }
+                font        : {
+                    size    : 1.5rem;
+                    weight  : 700;
+                }
+                color           : #000;
+                line-height     : 1;
+                text-decoration : none;
+                text-shadow     : 0 1px 0 #000;
+                cursor          : pointer;
+                opacity         : .75;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+        .toast-body {
+            display         : flex;
+            flex-direction  : row;
+            align-content   : center;
+            justify-content : flex-start;
+            align-items     : center;
+            flex-wrap       : nowrap;
+            padding         : 15px;
+            &:before {
+                @extend [class^="laravel-"], [class*=" laravel-"];
+                margin-right    : 7px;
+                font-size       : 24px;
+            }
+        }
+
+        &-info {
+            background-color: #17a2b8;
+            .toast-body {
+                @extend .laravel-toast-info;
+            }
+        }
+    }
+}

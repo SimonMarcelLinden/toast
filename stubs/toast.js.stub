@@ -1,0 +1,127 @@
+class toast {
+    options = {};
+
+    static #createHeader(title){
+        // create toast header
+        let headerElem = document.createElement('div');
+        // add toast-header class to doom element
+        headerElem.classList.add('toast-header');
+
+        let titleElem = document.createElement('strong');
+        titleElem.innerHTML = title;
+
+        headerElem.appendChild(titleElem);
+
+        // create button for close
+        if( this.options.closeButton ) {
+            let closeElem = document.createElement('button');
+            closeElem.setAttribute('type', 'button');
+            closeElem.setAttribute('aria-label', 'Close');
+            closeElem.classList.add('toast-close')
+
+            closeElem.innerHTML = '<span aria-hidden="true">×</span>';
+            headerElem.appendChild(closeElem);
+
+            //addEventListener on mouse click for standard closing of toast message on right top "x"
+            closeElem.addEventListener('click', function (event) {
+                let toastElement = headerElem.parentElement;
+
+                toastElement.classList.remove('active');
+                //wait for 350ms and then remove element
+                setTimeout(function(){
+                    toastElement.remove();
+                }, 350);
+            });
+        }
+
+        return headerElem;
+    }
+
+    static #createBody(body) {
+        // create toast header
+        let bodyElem = document.createElement('div');
+        // add toast-header class to doom element
+        bodyElem.classList.add('toast-body');
+
+        // create span for content
+        let contentElem = document.createElement('span');;
+        contentElem.classList.add('t-text')
+        contentElem.innerHTML = body;
+
+        bodyElem.appendChild(contentElem);
+
+        return bodyElem;
+    }
+
+    static #createToast(type, title, body){
+
+        // Creating toast message container as dom element
+        let toastElem = document.createElement("div");
+        // Adding toast class to it
+        toastElem.classList.add('toast');
+        // If there is a type, add that type name as class to toast message container
+        if(type){
+            toastElem.classList.add('toast-' + type);
+        }
+
+        toastElem.appendChild( this.#createHeader(title));
+        toastElem.appendChild( this.#createBody(body));
+
+        // Append toast message to it
+        let toastContainer = document.querySelectorAll(".toast-container");
+
+        toastContainer[0].appendChild(toastElem);
+
+        toastContainer[0].className.replace(/\btoast-.+?/g, '');
+
+        if(this.options.positionClass === "toast-top-left")     { toastContainer[0].classList.add('toast-top-left')}
+        if(this.options.positionClass === "toast-top-center")   { toastContainer[0].classList.add('toast-top-center')}
+        if(this.options.positionClass === "toast-top-right")    { toastContainer[0].classList.add('toast-top-right')}
+        if(this.options.positionClass === "toast-center-left")  { toastContainer[0].classList.add('toast-center-left')}
+        if(this.options.positionClass === "toast-center-center"){ toastContainer[0].classList.add('toast-center-center')}
+        if(this.options.positionClass === "toast-center-right") { toastContainer[0].classList.add('toast-center-right')}
+        if(this.options.positionClass === "toast-bottom-left")  { toastContainer[0].classList.add('toast-bottom-left')}
+        if(this.options.positionClass === "toast-bottom-center"){ toastContainer[0].classList.add('toast-bottom-center')}
+        if(this.options.positionClass === "toast-bottom-right") { toastContainer[0].classList.add('toast-bottom-right')}
+
+        // wait just a bit to add active class to the message to trigger animation
+        setTimeout(function(){
+            toastElem.classList.add('active');
+        }, this.options.showDuration);
+
+        if(this.options.hideDuration > 0){
+            // it it's bigger then 0 add it
+            setTimeout(function(){
+                toastElem.classList.remove('active');
+                setTimeout(function(){
+                    toastElem.remove();
+                }, 350);
+            }, this.options.hideDuration);
+        }else if(this.options.hideDuration === null){
+            //  it ther isn't any add default one (3000ms)
+            setTimeout(function(){
+                toastElem.classList.remove('active');
+                setTimeout(function(){
+                    toastElem.remove();
+                }, 350);
+            }, 3000);
+        }
+    }
+
+    static info(title, body) {
+        this.#createToast('info', 'Test Title', 'Test Body');
+    }
+}
+
+// when dom content is loaded
+document.addEventListener('DOMContentLoaded', (event) => {
+    // get all elements with .toast-container class
+    let toastContainer = document.querySelectorAll(".toast-container");
+    // check if container already exist and add it if it doesen't
+    if(0 === toastContainer.length){
+        // prepare toast-container element
+        let toastContainerContent = '<div class="toast-container"></div>'
+        // add it to the end of the body
+        document.querySelector("body").innerHTML += toastContainerContent;
+    }
+});

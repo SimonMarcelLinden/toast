@@ -114,6 +114,106 @@ class Toast {
     }
 
     /**
+     * Add a success flash message to session.
+     *
+     * @param string $message The flash message content.
+     * @param string $title The flash message title.
+     * @param array  $options The custom options.
+     *
+     * @return void
+     */
+    public function success($message, $title = null, $options = []) {
+        if($message instanceof MessageBag) {
+            $messageString = "";
+            foreach ($message->getMessages() as $messageArray)
+            {
+                foreach ($messageArray as $currentMessage)
+                    $messageString .= $currentMessage."<br>";
+            }
+
+            $this->add('success', rtrim($messageString, "<br>"), $title, $options);
+        } else {
+            $this->add('success', $message, $title, $options);
+        }
+    }
+
+    /**
+     * Add an warning flash message to session.
+     *
+     * @param string $message The flash message content.
+     * @param string $title The flash message title.
+     * @param array  $options The custom options.
+     *
+     * @return void
+     */
+    public function warning($message, $title = null, $options = []) {
+        if($message instanceof MessageBag) {
+            $messageString = "";
+            foreach ($message->getMessages() as $messageArray)
+            {
+                foreach ($messageArray as $currentMessage)
+                    $messageString .= $currentMessage."<br>";
+            }
+
+            $this->add('warning', rtrim($messageString, "<br>"), $title, $options);
+        }
+        else {
+            $this->add('warning', $message, $title, $options);
+        }
+    }
+
+    /**
+     * Add an error flash message to session.
+     *
+     * @param string $message The flash message content.
+     * @param string $title The flash message title.
+     * @param array  $options The custom options.
+     *
+     * @return void
+     */
+    public function error($message, $title = null, $options = []) {
+        if($message instanceof MessageBag) {
+            $messageString = "";
+            foreach ($message->getMessages() as $messageArray)
+            {
+                foreach ($messageArray as $currentMessage)
+                    $messageString .= $currentMessage."<br>";
+            }
+
+            $this->add('error', rtrim($messageString, "<br>"), $title, $options);
+        }
+        else {
+            $this->add('error', $message, $title, $options);
+        }
+    }
+
+    /**
+     * Add an system flash message to session.
+     *
+     * @param string $message The flash message content.
+     * @param string $title The flash message title.
+     * @param array  $options The custom options.
+     *
+     * @return void
+     */
+    public function system($message, $title = null, $options = []) {
+        $this->info($message, $title, $options);
+    }
+
+    /**
+     * Add an bug flash message to session.
+     *
+     * @param string $message The flash message content.
+     * @param string $title The flash message title.
+     * @param array  $options The custom options.
+     *
+     * @return void
+     */
+    public function bug($message, $title = null, $options = []) {
+        $this->error($message, $title, $options);
+    }
+
+    /**
      * Clear messages
      *
      * @return void
